@@ -63,7 +63,8 @@ void dirwalk(const path & p, vec & arr)
               }    
               else {
                   Text_Mode blue(BLUE_BOLD);
-                  std::cout << (*it).filename() << '\n';                  
+                  std::cout << (*it).filename() << '\n';   
+              
               }  
           }
       }   
@@ -100,7 +101,14 @@ void fsize(const path & p)
 
 int main(int argc, char** argv)
 {
-    path p(std::string("."));
-    fsize(p);
+    path p(argv[1]);
+    try 
+    {
+        fsize(p);
+    }   
+    catch (const filesystem_error& ex)
+    {
+        std::cout << ex.what() << '\n';
+    } 
     return 0;
 }
